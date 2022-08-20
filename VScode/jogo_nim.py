@@ -1,53 +1,84 @@
+#########
+def computador_escolhe_jogada(n, m):
 
-###########    
-def partida():
-    n = int(input("Quantas peças? "))
-    m = int(input("Limite de peças por jogada? "))
-    if n%(m+1) == 0:
-        usuario_escolhe_jogada(n, m)
-    else:
-        computador_escolhe_jogada(n, m)
-###########
-def computador_escolhe_jogada(n,m):
-    if n <= m:
-        print("O computador removeu {} peças.".format(n))
-        n = 0
-        print("Fim de jogo! O computador ganhou!!")
-        campeonato()
-    else:
-        for i in range (1, m):
-            if (n%i) == 0:
-                print("\n\nO computador removeu {} peças.".format(i))
-                n = n - i
-                print("Agora restam {} peças.".format(n))
+    pcplay = 1
 
-                if n == 0:
-                    print("Fim de jogo! O computador ganhou!!")
-                    ncamp = 1
-                    campeonato(ncamp)
-                else:
-                    usuario_escolhe_jogada(n, m)
-###########
+    while pcplay != m:
+        if (n - pcplay) % (m+1) == 0:
+            return pcplay
+        else:
+            pcplay += 1
+    return pcplay
+###############
 def usuario_escolhe_jogada(n, m):
 
-    remover = int(input("\n\nQuantas peças você vai tirar? "))
+    jogadaV = False
 
-    if remover > n or remover > m:
-        remover = int(input("\nOops! Jogada inválida! Tente de novo:  "))
-        computador_escolhe_jogada(n,m)
-    else:
-        n = n - remover
-        print("Voce removeu {} peças, restam {} peças.\n".format(remover,n))
-        computador_escolhe_jogada(n,m)
-       
-############
-def campeonato(ncamp):
-    ncamp = ncamp + 1
-    if ncamp < 3:
-        ncamp = ncamp + 1
+    while not jogadaV:
+        userplay = int(input('Quantas peças você vai tirar?\n'))
+        if userplay > m or userplay < 1:
+            print('\nOops! Jogada inválida! Tente de novo.')
+        else:
+            jogadaV = True
+    return userplay
+###############
+def campeonato():
+
+    numberround = 1
+
+    while numberround <= 3:
+        print('---- Rodada', numberround, '----')
         partida()
-    else:
-        print("----Final do campeonato----\n")
-        print("Placar: Você 0 X 3 Computador")
+        numberround += 1
 
-partida()
+    print('\nPlacar: Você 0 X 3 Computador')
+###############
+def partida():
+
+    n = int(input('Quantas peças?\n'))
+    m = int(input('Limite de peças por jogada?\n'))
+
+    PCjoga = False
+
+    if n % (m+1) == 0:
+        print('Voce começa!\n')
+    else:
+        print('Computador começa!\n')
+        PCjoga = True
+
+    while n > 0:
+        if PCjoga:
+            pcplay = computador_escolhe_jogada(n, m)
+            n = n - pcplay
+            if pcplay == 1:
+                print('O computador tirou uma peça')
+            else:
+                print('\nO computador tirou', pcplay, 'peças')
+
+            PCjoga = False
+        else:
+            userplay = usuario_escolhe_jogada(n, m)
+            n = n - userplay
+            if userplay == 1:
+                print('Você tirou uma peça\n')
+            else:
+                print('Você tirou', userplay, 'peças\n')
+            PCjoga = True
+        if n == 1:
+            print('Agora resta apenas uma peça no tabuleiro.\n')
+        else:
+            if n != 0:
+                print('Agora restam,', n, 'peças no tabuleiro.\n')
+
+    print('Fim do jogo! O computador ganhou!')
+
+print('Bem-vindo ao jogo nim')
+
+modo = int(input('Escolha:\n1 - para jogar partida isolada\n2 - para jogar um campeonato\n'))
+
+if modo == 2:
+    print('Voce escolheu um campeonato!')
+    campeonato()
+else:
+    if modo == 1:
+        partida()

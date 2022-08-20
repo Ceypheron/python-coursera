@@ -1,0 +1,1 @@
+#receber numero e verificar se e primo

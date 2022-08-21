@@ -70,7 +70,7 @@ def partida():
             if n != 0:
                 print('Agora restam,', n, 'peças no tabuleiro.\n')
 
-    print('Fim do jogo! O computador ganhou!')
+    print('Fim de jogo, o computador ganhou!')
 
 print('Bem-vindo ao jogo nim')
 

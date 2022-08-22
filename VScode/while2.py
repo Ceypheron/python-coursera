@@ -1,6 +1,5 @@
 ## fatorial com função
-
-
+### vogais python 
 n = int(input("Digite um numero inteiro positivo: "))
 n = 1
 while n >= 0:

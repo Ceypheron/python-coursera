@@ -1,5 +1,9 @@
-animais = ['gato','cachorro','papagaio','arara','jacare']
+carnes = ['picanha','alcatras','file mignom','cupim']
+x = carnes
 
-animais[2]= animais.append('piriquito')
 
-print(animais)
+del (x[-1])
+
+print(carnes)
+print()
+print(x)

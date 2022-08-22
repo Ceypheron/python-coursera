@@ -27,7 +27,6 @@ def main():
         if sexo == 2 and 18 < idade >= 10 :
             taxabasal = (13,3 * peso) + 692
 
-
     opcao = int(input("Ola o que deseja?\nTecle 1 para IMC\nTecle 2 para ficha de treino\n"))
     if opcao == 1:
         imc()

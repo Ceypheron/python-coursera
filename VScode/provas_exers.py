@@ -4,30 +4,38 @@
 def MinMax (temperaturas):
     print('A menor temperatura foi {}c'.format(minima(temperaturas)))
     print('A maior temperatura foi {}c'.format(maxima(temperaturas)))
-
+############################################
 def minima(temps):
-    min = 0 
-    i = 0
+    min = temps[0] 
+    i = 1
     while i < len(temps):
         if temps[i] < min:
                 min = temps[i]
         i = i + 1
     return min
-
+###################################
+def maxima(temps):
+    max = temps[0]
+    i = 1
+    while i < len(temps):
+        if temps[i] > max:
+            max = temps[i]
+        i = i + 1
+    return max
+##########################################
+def teste_pontual(temp, valor_esperado):
+    valor_calculado = minima(temp)
+    if valor_calculado != valor_esperado:
+        print('\nValor errado parra array {}'.format(temp))
+        print('Valor esperado: {}\nValor calculado: {}'.format(valor_esperado,valor_calculado))
+###############################################
 def testa_minima():
-
     print('Iniciando os teste')
-    temp = [0]
-    if minima(temp) != 0:
-        print('Valor errado para array  {}'.format(temp))
+    teste_pontual([0],0)
+    teste_pontual([0, 0, 0, 0, 0], 0)
+    teste_pontual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],0)
+    teste_pontual([30, 22, 27, 25, 26, 27, 29, 31, 32, 33, 30, 24, 26, 27],22)
+    teste_pontual([-15, -12, 0, 20, 30], -15)
+    print('Teste finalizado')
 
-    temp = [0,33,22,55,66,85,2,1,33,5,4,10,15,12,36,18,47]
-    if minima(temp) != 0:
-        print('Valor errado para array  {}'.format(temp))
-
-    temp = [33,44,2,23,2,1,44,-2]
-    if minima(temp) != -2:
-        print('Valor errado para array  {}'.format(temp))
-
-    print('Finalizando os teste')
-testa_minima()
+MinMax([30, 22, 27, 25, 26, 27, 29, 31, 32, 33, 30, 24, 26, 27])
